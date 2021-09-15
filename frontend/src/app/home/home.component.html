@@ -1,0 +1,85 @@
+<div class="home-container">
+    <div class="home-header">
+        <div (click)="logout()">
+            Logout
+        </div>
+        <div *ngIf="viewMessage" (click)="back()">
+            BACK
+        </div>
+    </div>
+    <div class="home-body">
+        <div *ngIf="!viewMessage" class="messages">
+            <div (click)="viewSentMessages()">
+                Sent Messages
+            </div>
+            <div (click)="viewReceivedMessages()">
+                Received Messages
+            </div>
+        </div>
+        <div *ngIf="viewMessage" class="message-container">
+            <div *ngIf="sentMessages">
+                <div>
+                    To: <select class="form-control" type="text" [(ngModel)]="userNameInput" (change)="selectMessage($event)">
+                        <option class="form-control" *ngFor="let user of usersList" [value]="user._id">{{user.username}}</option>
+                    </select>
+                </div>
+                <div class="message-body">
+                    <div class="message-list" *ngIf="messages.length">
+                        <div *ngFor="let m of messages">
+                            <div (click)="selectConversation(m)">
+                                {{showUser(m)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!messages.length">
+                        <div>
+                            No Messages to show. Send your first message
+                        </div>
+                    </div>
+                    <div class="message-view">
+                        <div class="messages-sent" *ngFor="let msg of currentMessage">
+                            {{msg}}
+                        </div>
+
+                        <div class="message-send" *ngIf="sendMessage">
+                            <textarea class="form-control" [(ngModel)]="content"></textarea>
+                            <div class="btn btn-primary" (click)="sendToUser()">Send</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="receivedMessages">
+                <!-- <div>
+                    To: <select class="form-control" type="text" [(ngModel)]="userNameInput" (change)="selectMessage($event)">
+                        <option class="form-control" *ngFor="let user of usersList" [value]="user._id">{{user.username}}</option>
+                    </select>
+                </div> -->
+                <div class="message-body">
+                    <div class="message-list" *ngIf="messages.length">
+                        <div *ngFor="let m of messages">
+                            <div (click)="selectReceivedConversation(m)">
+                                {{showUser(m)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!messages.length">
+                        <div>
+                            You have not received any messages!
+                        </div>
+                    </div>
+                    <div class="message-view">
+                        <div class="messages-sent" *ngFor="let msg of currentReceivedMessage">
+                            {{msg}}
+                        </div>
+
+                        <!-- <div class="message-send" *ngIf="sendMessage">
+                            <textarea class="form-control" [(ngModel)]="content"></textarea>
+                            <div class="btn btn-primary" (click)="sendToUser()">Send</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

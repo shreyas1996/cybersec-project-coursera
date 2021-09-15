@@ -1,0 +1,1 @@
+docker-compose down && bash docker_build_and_up.sh

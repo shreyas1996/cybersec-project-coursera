@@ -1,0 +1,1 @@
+docker build -t cybersec_project_backend ./backend && docker build -t cybersec_project_frontend ./frontend && docker-compose up -d
