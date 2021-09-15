@@ -2,9 +2,7 @@ version: '2'
 
 services:
   backend:
-    # image: 460015929520.dkr.ecr.ap-south-1.amazonaws.com/hellojiosearch:latest
     image: cybersec_project_backend:latest
-    # image: 100991542441.dkr.ecr.ap-south-1.amazonaws.com/uni_search:v2_prod_1jun
     restart: unless-stopped
     volumes:
       - ./myapp:/root
@@ -14,10 +12,9 @@ services:
       - API_PORT=3001
       - NODE_OPTIONS=--max_old_space_size=8172
       - MONGODB_HOST=mongodb://127.0.0.1:27017/hellojio
-      # - JWT_SECRET=
       - JWT_SECRET=f84e7173-b71b-49e9-badf-414212e3b5e1
       - JWT_ENCRYPTION_ENABLED=false
-    # network_mode: "host"
+    network_mode: "host"
     ports: 
       - 3000:3001
     logging:
@@ -25,10 +22,9 @@ services:
         max-size: "10m"
         max-file: "3"
   frontend:
-    # image: 460015929520.dkr.ecr.ap-south-1.amazonaws.com/hellojiosearch:latest
     image: cybersec_project_frontend:latest
     restart: unless-stopped
     ports: 
-      - 4001:80
+      - 80:80
 # volumes:
 #   myapp:
