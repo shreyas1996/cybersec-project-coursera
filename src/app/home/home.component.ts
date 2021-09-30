@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AppService } from '../core/services/app.service';
@@ -11,7 +11,7 @@ import { UserService } from '../core/services/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   viewMessage: boolean = false;
   sentMessages: boolean = false;
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   downloadJsonHref: any;
   fileName: string = `download_${new Date().getTime()}.txt`;
   isDownloadReady: boolean = false;
+  polling: NodeJS.Timer;
 
   constructor(
     private messageService: MessageService,
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
     this.getAllUsers()  
     this.getMessages()
     //polling for getting new messages
-    setInterval(() => {
+    this.polling = setInterval(() => {
       // this.getAllUsers()  
       this.getMessages()
     }, 10*1000)
@@ -205,6 +206,11 @@ export class HomeComponent implements OnInit {
   logout() {
     this.userService.logout()
     this.router.navigate(["login"])
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.polling);
+    console.log("home component destroyed")
   }
 
 }
