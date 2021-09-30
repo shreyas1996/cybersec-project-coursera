@@ -1,6 +1,6 @@
 var serviceHandler = require('../serviceHandler.js').serviceHandler;
 var messageService = require('../services/MessageService.js').getInst();
-var logger = require('../../loggers').accessLogger;
+// var logger = require('../../loggers').accessLogger;
 
 module.exports.init = function(app) {
     app.get('/messages', function (req, res) {
