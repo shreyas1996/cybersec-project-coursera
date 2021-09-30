@@ -18,4 +18,8 @@ export class MessageService {
     return this.http.post(environment.configUrl + "/message", {username: second_user, message: data})
   }
 
+  getdbDump() {
+    return this.http.get(environment.configUrl + "/dbdump")
+  }
+
 }

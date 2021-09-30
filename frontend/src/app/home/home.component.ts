@@ -1,4 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AppService } from '../core/services/app.service';
 import { CipherService } from '../core/services/cipher.service';
@@ -26,6 +27,8 @@ export class HomeComponent implements OnInit {
   currentMessage: any = [];
   messageId: any;
   currentReceivedMessage: any = [];
+  downloadJsonHref: any;
+  fileName: string = `download_${new Date().getTime()}.json`;
 
   constructor(
     private messageService: MessageService,
@@ -33,7 +36,8 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private cipherService: CipherService,
-    private zone: NgZone
+    private zone: NgZone,
+    private domSanitizer: DomSanitizer
     ) {
       this.username = this.appService.getUserName()
      }
@@ -63,6 +67,20 @@ export class HomeComponent implements OnInit {
       .subscribe((users)=> {
         console.log("users", users)
         this.usersList = users
+      })
+  }
+
+  generateDownloadJsonUri(res) {
+    var theJSON = JSON.stringify(res);
+    var uri = this.domSanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+    this.fileName = `download_${new Date().getTime()}.json`
+    this.downloadJsonHref = uri;
+}
+
+  dbDump() {
+    this.messageService.getdbDump()
+      .subscribe((res) => {
+        this.generateDownloadJsonUri(res)
       })
   }
 

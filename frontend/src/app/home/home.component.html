@@ -1,5 +1,8 @@
 <div class="home-container">
     <div class="home-header">
+        <a class="btn btn-clear" title="Download JSON" [href]="downloadJsonHref" [download]="fileName">
+            dbdump
+        </a>
         <div (click)="logout()">
             Logout
         </div>
