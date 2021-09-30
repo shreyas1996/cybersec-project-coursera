@@ -1,8 +1,0 @@
-{
-    "access": {
-        "log_dir": "/tmp",
-        "name": "access.log",
-        "rotate": true,
-        "json": false
-    }
-}

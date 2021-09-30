@@ -1,0 +1,61 @@
+.register-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .register-box {
+        background-color: white;
+        width: 50%;
+        .register-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            color: blue;
+            .header-text {
+                font-size: 3vw;
+            }
+        }
+        .register-body {
+            color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 10vh 2vw;
+            .body-text {
+                font-size: 1.5vw;
+            }
+            .username {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 5vh;
+            }
+            .password {
+                display: flex;
+                flex-direction: column;
+                // margin-bottom: 10vh;
+            }
+            input {
+                font-size: 2vw;
+                padding: 10px;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        .register-footer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            .register-submit {
+                font-size: 1.5vw;
+                margin: 2vh 2vw;
+            }
+            .login-link {
+                color: blue;
+                cursor: pointer;
+            }
+        }
+    }
+}

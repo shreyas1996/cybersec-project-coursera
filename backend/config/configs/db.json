@@ -1,7 +1,0 @@
-{
-    "host": {
-        "doc": "database hostname",
-        "default": "mongodb://localhost:27017/cybersec_coursera",
-        "env": "MONGODB_HOST"
-    }
-}
