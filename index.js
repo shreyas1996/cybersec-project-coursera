@@ -25,9 +25,9 @@ app.use(morgan('combined', {
         return res.statusCode < 400;
     }
 }));
-if (process.env.NODE_ENV !== "production") {
-     app.use(cors({ origin: "*" }));
-}
+// if (process.env.NODE_ENV !== "production") {
+     app.use(cors({ origin: "https://cybersec-coursera-frontend.herokuapp.com/" }));
+// }
 
 function init() {
 
