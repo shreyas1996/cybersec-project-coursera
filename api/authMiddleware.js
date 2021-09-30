@@ -14,6 +14,8 @@ const path = require("path")
 const key = new NodeRSA(fs.readFileSync(path.join(__dirname, "../config/jwtencryptionkey.pem")).toString());
 key.setOptions({encryptionScheme: 'pkcs1'});
 
+let aes = require("../services/aesCypher");
+
 function signup(req, res, next) {
     if (!req.body.username || !req.body.password) {
         res.json({
@@ -100,7 +102,8 @@ function dumpDbData(req, res, next) {
                 console.log("dumpdata", dumpData);
                 let messageString = ""
                 dumpData.forEach((d) => {
-                    messageString = messageString.concat(d,"\n");
+                    let cipher_text = await aes.encryptMessage(d);
+                    messageString = messageString.concat(cipher_text,"\n");
                 })
                 res.json({
                     dbDumpData: messageString
