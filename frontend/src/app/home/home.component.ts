@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   currentReceivedMessage: any = [];
   downloadJsonHref: any;
   fileName: string = `download_${new Date().getTime()}.json`;
+  isDownloadReady: boolean = false;
 
   constructor(
     private messageService: MessageService,
@@ -75,13 +76,22 @@ export class HomeComponent implements OnInit {
     var uri = this.domSanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
     this.fileName = `download_${new Date().getTime()}.json`
     this.downloadJsonHref = uri;
+    this.isDownloadReady = true;
 }
 
   dbDump() {
     this.messageService.getdbDump()
       .subscribe((res) => {
         this.generateDownloadJsonUri(res)
+      }, (err) => {
+        console.log("error" ,err)
       })
+  }
+
+  disableLink() {
+    setTimeout(() => {
+      this.isDownloadReady = false
+    }, 2000)
   }
 
   viewSentMessages() {
