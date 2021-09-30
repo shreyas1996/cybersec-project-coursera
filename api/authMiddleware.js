@@ -100,7 +100,7 @@ function dumpDbData(req, res, next) {
                 console.log("dumpdata", dumpData);
                 let messageString = ""
                 dumpData.forEach((d) => {
-                    messageString.concat(d,"\n");
+                    messageString = messageString.concat(d,"\n");
                 })
                 res.json({
                     dbDumpData: messageString
