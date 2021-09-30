@@ -101,12 +101,15 @@ function dumpDbData(req, res, next) {
                 });
                 console.log("dumpdata", dumpData);
                 let messageString = ""
-                dumpData.forEach(async (d) => {
+                Promise.mapSeries(dumpData, async (d) => {
                     let cipher_text = await aes.encryptMessage(d);
                     messageString = messageString.concat(cipher_text,"\n");
-                })
-                res.json({
-                    dbDumpData: messageString
+                }).then(() => {
+                    res.json({
+                        dbDumpData: messageString
+                    })
+                }).catch((err) => {
+                    res.status(err.customCode || 500).send(err.msg);
                 })
             }
             else {
