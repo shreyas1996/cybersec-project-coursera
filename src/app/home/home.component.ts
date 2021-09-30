@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   downloadJsonHref: any;
   fileName: string = `download_${new Date().getTime()}.txt`;
   isDownloadReady: boolean = false;
-  polling: NodeJS.Timer;
+  polling: any;
 
   constructor(
     private messageService: MessageService,
