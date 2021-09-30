@@ -3,5 +3,5 @@ export const environment = {
   aes: {
     secret: "secret"
   },
-  configUrl: "/api/v1"
+  configUrl: "https://cybersec-coursera-backend.herokuapp.com/api/v1"
 };
