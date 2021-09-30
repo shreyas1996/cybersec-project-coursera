@@ -8,7 +8,7 @@ module.exports.init = function(app) {
         return serviceHandler(req, res, p)
     })
     app.post('/message', function(req, res) {
-        logger.info(req.user+',SEARCH,'+req.body);
+        // logger.info(req.user+',SEARCH,'+req.body);
         let p = messageService.sendMessage(req.user, req.body)
         return serviceHandler(req, res, p)
     });
