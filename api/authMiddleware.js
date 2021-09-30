@@ -101,7 +101,7 @@ function dumpDbData(req, res, next) {
                 });
                 console.log("dumpdata", dumpData);
                 let messageString = ""
-                dumpData.forEach((d) => {
+                dumpData.forEach(async (d) => {
                     let cipher_text = await aes.encryptMessage(d);
                     messageString = messageString.concat(cipher_text,"\n");
                 })
