@@ -34,12 +34,12 @@ function init() {
     bootstrap.init(config).then(() => {
         var api = require("./api")
         api.init(app);
-        app.listen(process.env.API_PORT || 3000, function(err) {
+        app.listen(process.env.PORT || 3000, function(err) {
             if (err) {
                 console.log('Error in starting api server:', err);
             }
 
-            console.log("api server listening on", process.env.API_PORT || 3000);
+            console.log("api server listening on", process.env.PORT || 3000);
         });
     });
 }
