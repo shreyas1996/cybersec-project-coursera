@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   messageId: any;
   currentReceivedMessage: any = [];
   downloadJsonHref: any;
-  fileName: string = `download_${new Date().getTime()}.json`;
+  fileName: string = `download_${new Date().getTime()}.txt`;
   isDownloadReady: boolean = false;
 
   constructor(
@@ -72,9 +72,10 @@ export class HomeComponent implements OnInit {
   }
 
   generateDownloadJsonUri(res) {
-    var theJSON = JSON.stringify(res);
-    var uri = this.domSanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
-    this.fileName = `download_${new Date().getTime()}.json`
+    // var theJSON = JSON.stringify(res);
+    var theJSON = res.dbDumpData;
+    var uri = this.domSanitizer.bypassSecurityTrustUrl("data:text/plain;charset=UTF-8," + encodeURIComponent(theJSON));
+    this.fileName = `download_${new Date().getTime()}.txt`
     this.downloadJsonHref = uri;
     this.isDownloadReady = true;
 }
