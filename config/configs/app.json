@@ -1,0 +1,7 @@
+{
+    "override" : {
+        "default" : "./config/deployment.json"
+    },
+    "apiPrefix": "/api",
+    "version": "1"
+}
