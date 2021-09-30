@@ -26,7 +26,7 @@ app.use(morgan('combined', {
     }
 }));
 // if (process.env.NODE_ENV !== "production") {
-     app.use(cors({ origin: "https://cybersec-coursera-frontend.herokuapp.com/" }));
+     app.use(cors({ origin: "https://cybersec-coursera-frontend.herokuapp.com" }));
 // }
 
 function init() {
