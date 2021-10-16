@@ -164,6 +164,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.messageId = msg._id
     this.user2 = this.showUserId(msg)
     this.newConversation = false
+    this.currentReceivedMessage = []
     msg.messages[this.user2].forEach(async (m) => {
       console.log("a m", m)
       let data = await this.cipherService.decryptMessage(m).toPromise()
